@@ -1,8 +1,8 @@
 {
   "kind": "Scheduled",
   "properties": {
-    "displayName": "Test Rule - Failed Logons",
-    "description": "Detects failed logon events (EventID 4625).",
+    "displayName": "Test Rule2 - Failed Logons",
+    "description": "2 Detects failed logon events (EventID 4625).",
     "enabled": true,
     "query": "SecurityEvent | where EventID == 4625",
     "queryFrequency": "PT1H",
