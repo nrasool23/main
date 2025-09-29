@@ -1,16 +1,29 @@
 {
-  "kind": "Scheduled",
-  "properties": {
-    "displayName": "Test Rule2 - Failed Logons",
-    "description": "2 Detects failed logon events (EventID 4625).",
-    "enabled": true,
-    "query": "SecurityEvent | where EventID == 4625",
-    "queryFrequency": "PT1H",
-    "queryPeriod": "PT1H",
-    "triggerOperator": "GreaterThan",
-    "triggerThreshold": 0,
-    "severity": "Medium",
-    "suppressionDuration": "PT1H",
-    "suppressionEnabled": false
-  }
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "workspace": {
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.OperationalInsights/workspaces/providers/alertRules",
+      "apiVersion": "2022-09-01-preview",
+      "name": "[concat(parameters('workspace'),'/Microsoft.SecurityInsights/test-4625-rule')]",
+      "properties": {
+        "displayName": "Test Rule - Failed Logons",
+        "description": "Detects failed logon events (EventID 4625).",
+        "enabled": true,
+        "query": "SecurityEvent | where EventID == 4625",
+        "queryFrequency": "PT1H",
+        "queryPeriod": "PT1H",
+        "triggerOperator": "GreaterThan",
+        "triggerThreshold": 0,
+        "severity": "Medium",
+        "suppressionDuration": "PT1H",
+        "suppressionEnabled": false
+      }
+    }
+  ]
 }
