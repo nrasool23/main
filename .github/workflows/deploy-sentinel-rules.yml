@@ -28,6 +28,6 @@ jobs:
           az sentinel alert-rule create \
             --resource-group fy25 \
             --workspace-name EastUSa \
-            --rule-id $(basename $rule .json) \
+            --name $(basename $rule .json) \
             --alert-rule @$rule
         done
