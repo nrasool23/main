@@ -19,6 +19,9 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+    - name: Install Sentinel extension
+      run: az extension add --name sentinel --allow-preview true
+
     - name: Deploy Analytic Rules
       run: |
         for rule in sentinel-analytic-rules/*.json; do
@@ -26,6 +29,5 @@ jobs:
             --resource-group fy25 \
             --workspace-name EastUSa \
             --rule-id $(basename $rule .json) \
-            --location eastus \
-            --content @$rule
+            --alert-rule @$rule
         done
