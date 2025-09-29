@@ -1,0 +1,60 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workspace": {
+            "type": "String"
+        }
+    },
+    "resources": [
+        {
+            "id": "[concat(resourceId('Microsoft.OperationalInsights/workspaces/providers', parameters('workspace'), 'Microsoft.SecurityInsights'),'/AutomationRules/5ca97ed6-6cde-4af6-a6a9-dc435ce0c248')]",
+            "name": "[concat(parameters('workspace'),'/Microsoft.SecurityInsights/5ca97ed6-6cde-4af6-a6a9-dc435ce0c248')]",
+            "type": "Microsoft.OperationalInsights/workspaces/providers/AutomationRules",
+            "apiVersion": "2024-04-01-preview",
+            "properties": {
+                "displayName": "Test1",
+                "order": 1,
+                "triggeringLogic": {
+                    "isEnabled": false,
+                    "expirationTimeUtc": "2025-10-23T04:00:00.000Z",
+                    "triggersOn": "Incidents",
+                    "triggersWhen": "Created",
+                    "conditions": [
+                        {
+                            "conditionType": "Property",
+                            "conditionProperties": {
+                                "propertyName": "IncidentSeverity",
+                                "operator": "Equals",
+                                "propertyValues": [
+                                    "Informational",
+                                    "Low",
+                                    "Medium",
+                                    "High"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                "actions": [
+                    {
+                        "order": 1,
+                        "actionType": "AddIncidentTask",
+                        "actionConfiguration": {
+                            "title": "Step 1 ",
+                            "description": "<div>zdfaefaqa</div>"
+                        }
+                    },
+                    {
+                        "order": 2,
+                        "actionType": "AddIncidentTask",
+                        "actionConfiguration": {
+                            "title": "Step 2",
+                            "description": "<div>dcada</div>"
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
