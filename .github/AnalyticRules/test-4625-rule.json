@@ -1,0 +1,16 @@
+{
+  "kind": "Scheduled",
+  "properties": {
+    "displayName": "Test Rule - Failed Logons",
+    "description": "Detects failed logon events (EventID 4625).",
+    "enabled": true,
+    "query": "SecurityEvent | where EventID == 4625",
+    "queryFrequency": "PT1H",
+    "queryPeriod": "PT1H",
+    "triggerOperator": "GreaterThan",
+    "triggerThreshold": 0,
+    "severity": "Medium",
+    "suppressionDuration": "PT1H",
+    "suppressionEnabled": false
+  }
+}
