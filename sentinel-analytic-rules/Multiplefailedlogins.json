@@ -1,7 +1,7 @@
 {
   "kind": "Scheduled",
   "properties": {
-    "displayName": "Multiple Failed Logins from Same IP",
+    "displayName": "TEST 1 Multiple Failed Logins from Same IP",
     "description": "TEST 09292025B Part 2 Detects multiple failed logins from the same IP address within 10 minutes.",
     "severity": "Medium",
     "enabled": true,
