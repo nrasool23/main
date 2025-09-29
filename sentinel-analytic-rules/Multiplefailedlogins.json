@@ -1,8 +1,8 @@
 {
   "kind": "Scheduled",
   "properties": {
-    "displayName": "TEST4 Multiple Failed Logins from Same IP",
-    "description": "TEST4 09292025B Part 2 Detects multiple failed logins from the same IP address within 10 minutes.",
+    "displayName": "TEST5 Multiple Failed Logins from Same IP",
+    "description": "TEST5 09292025B Part 2 Detects multiple failed logins from the same IP address within 10 minutes.",
     "severity": "Medium",
     "enabled": true,
     "query": "SigninLogs \n| where ResultType != 0 \n| summarize FailedAttempts = count() by IPAddress, bin(TimeGenerated, 10m) \n| where FailedAttempts > 5",
