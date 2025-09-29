@@ -26,6 +26,6 @@ jobs:
             --resource-group fy25 \
             --workspace-name EastUSa \
             --rule-id $(basename $rule .json) \
-            --location East US \
+            --location eastus \
             --content @$rule
         done
