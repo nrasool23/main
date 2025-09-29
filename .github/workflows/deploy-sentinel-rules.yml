@@ -29,5 +29,5 @@ jobs:
             --resource-group fy25 \
             --workspace-name EastUSa \
             --name $(basename $rule .json) \
-            --properties @$rule
+            --rule @$rule
         done
