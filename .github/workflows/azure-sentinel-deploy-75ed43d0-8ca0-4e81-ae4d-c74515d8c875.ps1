@@ -134,7 +134,8 @@ function GetCommitShaTable($getTreeResponse) {
 function PushCsvToRepo() {
     $content = ConvertTableToString
     $relativeCsvPath = RelativePathWithBackslash $csvPath
-    $resourceBranchExists = git ls-remote --heads "https://github.com/$githubRepository" $newResourceBranch | wc -l
+    # PowerShell-native line count for resourceBranchExists:
+    $resourceBranchExists = (git ls-remote --heads "https://github.com/$githubRepository" $newResourceBranch | Measure-Object -Line).Lines
 
     if ($resourceBranchExists -eq 0) {
         git switch --orphan $newResourceBranch
@@ -425,7 +426,7 @@ function LoadDeploymentConfig() {
             if ($deployment_config.prioritizedcontentfiles) {
                 $global:prioritizedContentFiles = $deployment_config.prioritizedcontentfiles
             }
-            $excludeList = $global:parameterFileMapping.Values + $global:prioritizedcontentfiles
+            $excludeList = $global:parameterFileMapping.Values + $global:prioritizedContentFiles
             if ($deployment_config.excludecontentfiles) {
                 $excludeList = $excludeList + $deployment_config.excludecontentfiles
             }
@@ -605,7 +606,8 @@ function TryGetCsvFile {
     }
 
     $relativeCsvPath = RelativePathWithBackslash $csvPath
-    $resourceBranchExists = git ls-remote --heads "https://github.com/$githubRepository" $newResourceBranch | wc -l
+    # PowerShell-native line count for resourceBranchExists:
+    $resourceBranchExists = (git ls-remote --heads "https://github.com/$githubRepository" $newResourceBranch | Measure-Object -Line).Lines
 
     if ($resourceBranchExists -eq 1) {
         git fetch > $null
